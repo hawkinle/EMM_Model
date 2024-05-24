@@ -109,11 +109,11 @@ for Total_no_People in Total_no_People_options:
     plt.tight_layout()
     plt.show()
 
-# Final comparison plot for Total Staff Days, Number of Blocks Required, and Cost per Plot
-plt.figure(figsize=(14, 7))
+# Final comparison plot for Total Staff Days, Number of Blocks Required, Cost per Plot, and Total Cost
+plt.figure(figsize=(18, 7))
 
 # Total staff days comparison plot
-plt.subplot(1, 3, 1)
+plt.subplot(1, 4, 1)
 for Total_no_People, (staff_days, _) in comparison_dict.items():
     plt.plot(Number_plots, staff_days, marker='o', label=f'Total People: {Total_no_People}')
 plt.title('Comparison of Total Staff Days')
@@ -122,7 +122,7 @@ plt.ylabel('Total Staff Days')
 plt.legend()
 
 # Number of blocks required comparison plot
-plt.subplot(1, 3, 2)
+plt.subplot(1, 4, 2)
 for Total_no_People, (_, blocks_required) in comparison_dict.items():
     plt.plot(Number_plots, blocks_required, marker='o', label=f'Total People: {Total_no_People}')
 plt.title('Comparison of Number of Blocks Required')
@@ -131,7 +131,7 @@ plt.ylabel('Number of Blocks Required')
 plt.legend()
 
 # Cost per plot comparison plot
-plt.subplot(1, 3, 3)
+plt.subplot(1, 4, 3)
 for Total_no_People, cost_per_plot in cost_per_plot_dict.items():
     plt.plot(Number_plots, cost_per_plot, marker='o', label=f'Total People: {Total_no_People}')
 plt.title('Comparison of Cost per Plot')
@@ -139,5 +139,15 @@ plt.xlabel('Number of Plots')
 plt.ylabel('Cost per Plot ($)')
 plt.legend()
 
+# Total cost comparison plot
+plt.subplot(1, 4, 4)
+for Total_no_People, total_cost in cost_comparison_dict.items():
+    plt.plot(Number_plots, total_cost, marker='o', label=f'Total People: {Total_no_People}')
+plt.title('Comparison of Total Cost')
+plt.xlabel('Number of Plots')
+plt.ylabel('Total Cost ($)')
+plt.legend()
+
 plt.tight_layout()
 plt.show()
+
