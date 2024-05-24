@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Start Variables
-Number_plots = [10,20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
-Total_no_People_options = [2, 4,8, 14]
+Number_plots = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
+Total_no_People_options = [2, 4, 8, 14]
 
 # Constants
 Data_time = 0.25
@@ -12,9 +12,7 @@ Travel_Days_to_Site = 2
 No_of_People_Team = 2.0
 
 # Costing Variables
-Accommodation_per_day = 200
-Meals_per_day = 150
-Consumables_per_day = 50
+Team_cost_per_day = 800
 
 # Initialize dictionaries to store the results for comparison
 comparison_dict = {}
@@ -26,20 +24,13 @@ for Total_no_People in Total_no_People_options:
     # Adjust Number_days_available based on Total_no_People
     Number_days_available = 3 if Total_no_People < 10 else 5
 
-    # Adjust costing variables based on Number_days_available
-    if Number_days_available == 3:
-        Accommodation_cost = Accommodation_per_day * 4
-        Meals_cost = Meals_per_day * 4.5
-        Consumables_cost = Consumables_per_day * 4.5
-    else:
-        Accommodation_cost = Accommodation_per_day * Number_days_available
-        Meals_cost = Meals_per_day * Number_days_available
-        Consumables_cost = Consumables_per_day * Number_days_available
-
     # Calculated Variables
     Number_of_Teams = Total_no_People / No_of_People_Team
     total_plots_per_day = Number_of_Teams * Number_of_Plots_per_Day
-    Cost_per_day_per_team = (Accommodation_cost + Meals_cost + Consumables_cost) * Number_of_Teams
+    Cost_per_day_per_team = Number_of_Teams * Team_cost_per_day
+
+    # Adjust costing based on Number_days_available
+    Cost_for_block = Cost_per_day_per_team * (4.5 if Number_days_available == 3 else 5.5)
 
     # Initialize lists to store the results
     total_staff_days_list = []
@@ -58,8 +49,7 @@ for Total_no_People in Total_no_People_options:
         Staff_days = Total_no_People * Days_Required_for_Plots
         Total_staff_days = Staff_days + Traveldays_all_teams + Data_days + Traveldays_all_teams + Safety_days
 
-        Cost_per_block = Cost_per_day_per_team * Number_days_available
-        Total_cost = Cost_per_block * No_of_Blocks_Required
+        Total_cost = Cost_for_block * No_of_Blocks_Required
         Cost_per_plot = Total_cost / plots
 
         # Append the results to the lists
@@ -150,4 +140,3 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-
