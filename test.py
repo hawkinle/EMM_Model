@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Start Variables
-Number_plots = [20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
-Total_no_People_options = [2, 4, 14]
+Number_plots = [10,20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
+Total_no_People_options = [2, 4,8, 14]
 
 # Constants
 Data_time = 0.25
